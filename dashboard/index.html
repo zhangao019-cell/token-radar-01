@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a class="skip" href="#board-wrap">Skip to the board</a>
+<div class="shell">
+  <header class="top">
+    <div class="brand">
+      <span class="radar-dot" aria-hidden="true"></span>
+      <div>
+        <div class="brand-name">TOKEN RADAR</div>
+        <div class="brand-sub">Pre-token protocols, ranked by implied value</div>
+      </div>
+    </div>
+    <div class="top-meta" id="top-meta"></div>
+  </header>
+
+  <section class="lede">
+    <div>
+      <h1 id="headline">Loading the radar…</h1>
+      <p id="lede-text"></p>
+      <p class="note">Implied value is this radar's model, not a promise and not a price. A protocol
+      “records no token” when the snapshot carries no market cap, CoinGecko id or symbol for it —
+      that is what the record says, never proof it has none. Nothing here predicts whether or when
+      a token is issued.</p>
+    </div>
+    <dl class="facts" id="facts"></dl>
+  </section>
+
+  <div class="controls" role="search">
+    <div class="field">
+      <label for="q">Search</label>
+      <input type="search" id="q" placeholder="Name, category or chain" autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="category">Category</label>
+      <select id="category" aria-label="Filter by category"></select>
+    </div>
+    <div class="field">
+      <label id="status-label">Token status</label>
+      <div class="tabs" role="group" aria-labelledby="status-label">
+        <button type="button" id="tab-pre" aria-pressed="true">Pre-token</button>
+        <button type="button" id="tab-live" aria-pressed="false">Live token</button>
+      </div>
+    </div>
+    <span class="count" id="count"></span>
+  </div>
+
+  <main id="board-wrap">
+    <div class="panel" id="board-panel">
+      <div class="table-wrap">
+        <table id="board-table">
+          <caption id="board-caption">Pre-token protocols, strongest implied value first. Select a row for its model and farm plan.</caption>
+          <thead>
+            <tr>
+              <th scope="col"><button type="button" data-sort="implied">Rank</button></th>
+              <th scope="col"><button type="button" data-sort="name">Protocol</button></th>
+              <th scope="col"><button type="button" data-sort="tvl">TVL</button></th>
+              <th scope="col"><button type="button" data-sort="growth">7d</button></th>
+              <th scope="col"><button type="button" data-sort="age">Age</button></th>
+              <th scope="col"><button type="button" data-sort="chains">Chains</button></th>
+              <th scope="col"><button type="button" data-sort="implied">Implied value</button></th>
+              <th scope="col">Token</th>
+            </tr>
+          </thead>
+          <tbody id="board-body"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="empty" hidden>
+        <h2>No protocol matches that filter</h2>
+        <p>Clear the search or pick another category to see the board again.</p>
+        <button class="button primary" type="button" id="clear-filters">Clear filters</button>
+      </div>
+    </div>
+  </main>
+
+  <section class="panel model" id="model-panel" aria-labelledby="model-title">
+    <h2 id="model-title">How implied value is computed</h2>
+    <p class="sub">One function scores every row. No protocol name is special-cased, and no row is hand-picked.</p>
+    <div class="formula" id="formula"></div>
+    <p class="sub" id="model-notes"></p>
+  </section>
+
+  <footer class="foot">
+    <p>Snapshot <span id="foot-asof"></span> · Source: DefiLlama protocol index · Built by the radar-2 model · The board covers all 40 watchlist protocols plus the 160 highest-TVL pre-token protocols below the $50M floor.</p>
+  </footer>
+</div>
+
+<dialog class="detail" id="detail" aria-labelledby="detail-title">
+  <div id="detail-body"></div>
+</dialog>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
